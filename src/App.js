@@ -1,26 +1,60 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
 function App() {
+  const [data, setData] = useState ( [
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0]
+  ])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      style={{
+        background: "#AD9D8F",
+        width: "max-content",
+        margin: "auto",
+        padding: 5,
+        borderRadius: 5,
+        marginTop: 10
+      }}>
+      {data.map((row, oneIndex) => {
+        return(
+          <div style = {{ display: "flex"}} key = {oneIndex}>
+            {row.map((digit, index) => (
+              <Block num = {digit} key = {index} />
+            ))}
+          </div>
+        )
+      })}
     </div>
   );
+ };
+ const Block = ( {num}) => {
+   const {blockStyle} = style;
+  return (
+    <div 
+      style={{
+        ...blockStyle,
+       // background: getColors(num),
+      }}>
+      {num}
+    </div>
+  )
+};
+
+const style = {
+  blockStyle: {
+    height: 80,
+    width: 80,
+    background: "lightgray",
+    margin: 3,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    fontSize: 45,
+    fontWeight: "800",
+    color: "white"
+  }
 }
 
 export default App;
